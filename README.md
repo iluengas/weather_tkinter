@@ -1,2 +1,2 @@
-# weather_tkinter
-![Project Picture](./weatherApp.png)
+# Project Picture
+![The app finds the weather for a given city](./weatherApp.png)
