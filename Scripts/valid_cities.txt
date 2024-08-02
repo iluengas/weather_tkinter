@@ -12,3 +12,13 @@ pacoima
 garden city
 dighton
 gove
+dubai
+london
+moscow
+tokyo
+hong kong
+van nuys
+oxnard
+paris
+palm springs
+las vegas

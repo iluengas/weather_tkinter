@@ -1,16 +1,19 @@
 import requests
 import time
-from Scripts.config import API_KEY
-from Scripts.valid_cities import add_valid_city
+from scripts.config import API_KEY
+from scripts.valid_cities import add_valid_city
+
 
 class CityNotFoundError(Exception):
     pass
+
 
 # Create a dictionary to store cached weather data
 weather_cache = {}
 
 # Define the expiration time for the cached weather data (in seconds)
 CACHE_EXPIRATION_TIME = 3600  # 1 hour
+
 
 def make_weather_api_request(city_name):
     """
@@ -27,7 +30,19 @@ def make_weather_api_request(city_name):
     response = requests.get(url)
     return response
 
+
 def handle_weather_response(response, city_name):
+    """
+    Checks for exceptions in response and returns weather data
+
+    Args:
+    response (response): The response object
+    city_name (str): The name of the city
+
+    Returns:
+    weather, description, temp, humidity, pressure, wind_speed, timezone
+
+    """
     try:
         response.raise_for_status()
         weather_json = response.json()
@@ -97,7 +112,8 @@ def get_weather(city_name):
             'humidity': weather_cache[city_name]['humidity'],
             'pressure': weather_cache[city_name]['pressure'],
             'wind_speed': weather_cache[city_name]['wind_speed'],
-            'timezone': weather_cache[city_name]['timezone']  # Add the timezone to the returned data
+            # Add the timezone to the returned data
+            'timezone': weather_cache[city_name]['timezone']
         }
 
     response = make_weather_api_request(city_name)

@@ -3,7 +3,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
-from Scripts.get_weather import get_weather
+from scripts.get_weather import get_weather
 import pytz
 from datetime import datetime
 
@@ -31,8 +31,8 @@ class WeatherApp(tk.Tk):
         self.modify_weather_patterns()
 
         # Load the space background image
-        self.weather_frame_space_image = Image.open("Images/space.png")
-        self.weather_frame_space_photo = ImageTk.PhotoImage(self.weather_frame_space_image)
+        # self.weather_frame_space_image = Image.open("Images/space.png")
+        # self.weather_frame_space_photo = ImageTk.PhotoImage(self.weather_frame_space_image)
         # Create frames for weather display
         self.weather_frame = tk.Frame(self.screen1, bg="black")
         self.weather_frame.pack(pady=(10, 0))
@@ -79,7 +79,7 @@ class WeatherApp(tk.Tk):
 
         self.pressure_frame = tk.Frame(self.row_frame, bg="black")
         self.pressure_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-        self.pressure_label = tk.Label(self.pressure_frame, text="", bg="black", font=("Helvetica", 20), width=25, anchor="n", fg="gray")
+        self.pressure_label = tk.Label(self.pressure_frame, text="", bg="black", font=("Helvetica", 25), width=25, anchor="n", fg="gray")
         self.pressure_label.pack(side=tk.TOP, fill=tk.X)
         self.pressure_amount_label = tk.Label(self.pressure_frame, text="", bg="black", font=("Helvetica", 60), anchor="n")
         self.pressure_amount_label.pack(side=tk.TOP, fill=tk.X)
@@ -154,20 +154,20 @@ class WeatherApp(tk.Tk):
         if "clear" in weather.lower():
             if self.is_daytime(city_timezone):
                 x, y = 300, 300
-                weather_image = Image.open("Images/sun.png").resize((x, y))
+                weather_image = Image.open("images/sun.png").resize((x, y))
             else:
                 x, y = 350, 300
-                weather_image = Image.open("Images/moon.png").resize((x, y))
+                weather_image = Image.open("images/moon.png").resize((x, y))
                 
         elif "cloud" in weather.lower():
-            weather_image = Image.open("Images/cloud.png").resize((x, y))
+            weather_image = Image.open("images/cloud.png").resize((x, y))
         elif "rain" in weather.lower():
-            weather_image = Image.open("Images/rain.png").resize((x, y))
+            weather_image = Image.open("images/rain.png").resize((x, y))
         elif "thunder" in weather.lower() or "lightning" in weather.lower() or "storm" in weather.lower():
-            weather_image = Image.open("Images/thunder.png").resize((x, y))
+            weather_image = Image.open("images/thunder.png").resize((x, y))
         else:
             # Set a default image if the weather is not recognized
-            weather_image = Image.open("Images/default.png").resize((x, y))
+            weather_image = Image.open("images/default.png").resize((x, y))
 
         # Convert the PIL Image to PhotoImage and save it as an instance variable
         self.weather_image = ImageTk.PhotoImage(weather_image)
@@ -189,7 +189,3 @@ class WeatherApp(tk.Tk):
 
     def modify_weather_patterns(self):
         pass
-
-if __name__ == "__main__":
-    app = WeatherApp()
-    app.mainloop()
